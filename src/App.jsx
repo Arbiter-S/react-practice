@@ -1,3 +1,34 @@
+import { useState } from "react";
+
+function InputForm() {
+    const [value, setValue] = useState("");
+
+  function handleClick() {
+    console.log(value);
+  }
+
+  return (
+    <div className="m-auto max-w-2xs rounded-xl border border-[#0057c2] p-6">
+      <h1 className="mb-6 text-3xl font-bold text-[#311414]">Enter Anything</h1>
+
+      <input
+        className="mb-4 w-full rounded-lg border border-gray-300 p-3 outline-none"
+        value={value}
+        onChange={(event) => setValue(event.target.value)}
+        type="text"
+        placeholder="Type something..."
+      />
+
+      <button
+        className="w-full rounded-lg bg-[#0057c2] p-3 font-semibold text-white hover:text-black hover:bg-blue-300 transition duration-700"
+        onClick={handleClick}
+      >
+        Submit
+      </button>
+    </div>
+  );
+}
+
 function ProductCard(props) {
   return (
     <>
@@ -8,10 +39,11 @@ function ProductCard(props) {
       <div className="grid gap-6 grid-cols-3">
         {props.products.map((product) => {
           return (
-            <div className="rounded-xl border border-[#0057c2]  p-6" key={product.name}>
-              <div className="mb-4 text-xl font-bold">
-                {product.name}
-              </div>
+            <div
+              className="rounded-xl border border-[#0057c2]  p-6 mb-10"
+              key={product.name}
+            >
+              <div className="mb-4 text-xl font-bold">{product.name}</div>
 
               <div className="mb-3 text-2xl font-semibold text-blue-900">
                 ${product.price}
@@ -48,6 +80,7 @@ function App() {
   return (
     <main className="min-h-screen bg-gray-100 p-8">
       <ProductCard products={products} />
+      <InputForm />
     </main>
   );
 }
